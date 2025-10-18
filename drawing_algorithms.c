@@ -14,7 +14,7 @@ static void draw_line_octant_1(int x1, int y1, int x2, int y2, int color) {
 
     write_pixel(x, y, color);
 
-    while (x < x2) { // Loop simples
+    while (x < x2) {
         if(d <= 0) {
             d = d + incE;
             x = x + 1;
@@ -228,18 +228,22 @@ void draw_line_with_midpoint_algorithm(int x1, int y1, int x2, int y2, int color
         if (dx >= 0) {
             if (dy >= 0) {
                 // Octante 1
+                printf("Octante 1\n");
                 draw_line_octant_1(x1, y1, x2, y2, color);
             } else {
                 // Octante 8
+                printf("Octante 8\n");
                 draw_line_octant_8(x1, y1, x2, y2, color);
             }
         } else {
             if (dy >= 0) {
-                // Octante 4 (troca p1 com p2)
-                draw_line_octant_4(x2, y2, x1, y1, color);
+                // Octante 4
+                printf("Octante 4\n");
+                draw_line_octant_4(x1, y1, x2, y2, color);
             } else {
-                // Octante 5 (troca p1 com p2)
-                draw_line_octant_5(x2, y2, x1, y1, color);
+                // Octante 5
+                printf("Octante 5\n");
+                draw_line_octant_5(x1, y1, x2, y2, color);
             }
         }
     } else {
@@ -247,18 +251,22 @@ void draw_line_with_midpoint_algorithm(int x1, int y1, int x2, int y2, int color
         if (dy >= 0) {
             if (dx >= 0) {
                 // Octante 2
+                printf("Octante 2\n");
                 draw_line_octant_2(x1, y1, x2, y2, color);
             } else {
                 // Octante 3
+                printf("Octante 3\n");
                 draw_line_octant_3(x1, y1, x2, y2, color);
             }
         } else {
             if (dx >= 0) {
-                // Octante 7 (troca p1 com p2)
-                draw_line_octant_7(x2, y2, x1, y1, color);
+                // Octante 7
+                printf("Octante 7\n");
+                draw_line_octant_7(x1, y1, x2, y2, color);
             } else {
-                // Octante 6 (troca p1 com p2)
-                draw_line_octant_6(x2, y2, x1, y1, color);
+                // Octante 6
+                printf("Octante 6\n");
+                draw_line_octant_6(x1, y1, x2, y2, color);
             }
         }
     }
