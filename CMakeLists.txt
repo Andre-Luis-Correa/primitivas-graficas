@@ -17,6 +17,8 @@ add_executable(primitivasGraficas
         sdl_utils.c
         main_utils.h
         main_utils.c
+        cohen_sutherland_algorithm.h
+        cohen_sutherland_algorithm.c
 )
 
 # Linkar bibliotecas do SDL2
