@@ -7,7 +7,7 @@ void show_menu() {
     printf("=====================================\n");
     printf("1. Desenhar Linha (Ponto Medio)\n");
     printf("2. Recorte de Linha (Cohen-Sutherland)\n");
-    printf("3. Desenhar Poligono [EM BREVE]\n");
+    printf("3. Desenhar Poligono\n");
     printf("4. Preencher Poligono (Scanline) [EM BREVE]\n");
     printf("0. Sair\n");
     printf("=====================================\n");
@@ -132,5 +132,45 @@ void menu_line_cutout_with_cohen_sutherland() {
     line_cutout_with_cohen_sutherland(150, 150, 150, 500, lineColorClip);
 
     // Exibe o resultado
+    update_and_wait();
+}
+
+void menu_draw_polygon(int num_vertices) {
+    clear_screen();
+
+    // 3. Definir parâmetros do polígono
+    int center_x = 400; // Metade da largura da tela (800)
+    int center_y = 300; // Metade da altura da tela (600)
+    int radius = 200;   // Raio do círculo onde o polígono será desenhado
+    int color = rgb_to_color(255, 255, 0); // Amarelo
+
+    // Ângulo de cada "fatia" do polígono (em radianos)
+    double angle_step = 2.0 * M_PI / num_vertices;
+
+    int x1, y1, x2, y2;
+    double start_angle = 0.0; // Começa no ponto "3 horas"
+
+    // Calcula o primeiro ponto (vértice 0)
+    // (int) converte o resultado 'double' de sin/cos para 'int'
+    x1 = (int) (center_x + radius * cos(start_angle));
+    y1 = (int) (center_y + radius * sin(start_angle));
+
+    // Itera do vértice 1 até o último (e volta ao primeiro)
+    for (int i = 1; i <= num_vertices; i++) {
+        double current_angle = i * angle_step;
+
+        // Calcula o próximo ponto
+        x2 = (int) (center_x + radius * cos(current_angle));
+        y2 = (int) (center_y + radius * sin(current_angle));
+
+        // Desenha a linha do ponto anterior para o ponto atual
+        draw_line_with_midpoint_algorithm(x1, y1, x2, y2, color); //
+
+        // O ponto atual (x2, y2) se torna o ponto inicial (x1, y1) para a próxima linha
+        x1 = x2;
+        y1 = y2;
+    }
+
+    // 5. Exibir o resultado
     update_and_wait();
 }

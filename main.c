@@ -36,9 +36,23 @@ int main(int argc, char* argv[]) {
                 }
                 break;
 
-            case 3:
-                printf("\n[TODO] Desenhar Polígono ainda nao implementado.\n");
+            case 3: {
+                int num_vertices;
+                printf("\nDigite o numero de vertices (minimo 3): ");
+                scanf("%d", &num_vertices);
+
+                if (num_vertices < 3) {
+                    printf("Numero de vertices invalido! Retornando ao menu.\n");
+                } else {
+                    if (init_sdl()) {
+                        menu_draw_polygon(num_vertices);
+                        close_sdl();
+                    } else {
+                        printf("Falha na inicializacao do SDL!\n");
+                    }
+                }
                 break;
+            }
 
             case 4:
                 printf("\n[TODO] Preenchimento Scanline ainda nao implementado.\n");

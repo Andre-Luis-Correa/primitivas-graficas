@@ -62,3 +62,13 @@
 963	1405	7825173923210246	primitivasGraficas.exe	98a5a784989b11f9
 5	520	7825174249032393	CMakeFiles/primitivasGraficas.dir/main_utils.c.obj	6b32fcdfa1e7dddc
 521	736	7825174250484021	primitivasGraficas.exe	98a5a784989b11f9
+23	779	7825183015250243	CMakeFiles/primitivasGraficas.dir/main.c.obj	2b849e03522a51b0
+47	781	7825183015217010	CMakeFiles/primitivasGraficas.dir/cohen_sutherland_algorithm.c.obj	efbcd157505db561
+33	782	7825183015264637	CMakeFiles/primitivasGraficas.dir/main_utils.c.obj	6b32fcdfa1e7dddc
+782	1112	7825183017857000	primitivasGraficas.exe	98a5a784989b11f9
+28	694	7825185135695563	CMakeFiles/primitivasGraficas.dir/main.c.obj	2b849e03522a51b0
+44	702	7825185135787534	CMakeFiles/primitivasGraficas.dir/main_utils.c.obj	6b32fcdfa1e7dddc
+702	973	7825185137562138	primitivasGraficas.exe	98a5a784989b11f9
+33	596	7825187264675386	CMakeFiles/primitivasGraficas.dir/main_utils.c.obj	6b32fcdfa1e7dddc
+24	599	7825187264675386	CMakeFiles/primitivasGraficas.dir/main.c.obj	2b849e03522a51b0
+599	864	7825187266433508	primitivasGraficas.exe	98a5a784989b11f9
