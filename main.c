@@ -28,7 +28,12 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 2:
-                printf("\n[TODO] Recorte Cohen-Sutherland ainda nao implementado.\n");
+                if (init_sdl()) {
+                    menu_line_cutout_with_cohen_sutherland();
+                    close_sdl();
+                } else {
+                    printf("Falha na inicializacao do SDL!\n");
+                }
                 break;
 
             case 3:

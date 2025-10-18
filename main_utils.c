@@ -1,6 +1,4 @@
 #include "main_utils.h"
-#include "sdl_utils.h"
-#include "midpoint_line_algorithm.h"
 
 void show_menu() {
     printf("\n");
@@ -8,7 +6,7 @@ void show_menu() {
     printf("     PRIMITIVAS GRAFICAS - MENU      \n");
     printf("=====================================\n");
     printf("1. Desenhar Linha (Ponto Medio)\n");
-    printf("2. Recorte de Linha (Cohen-Sutherland) [EM BREVE]\n");
+    printf("2. Recorte de Linha (Cohen-Sutherland)\n");
     printf("3. Desenhar Poligono [EM BREVE]\n");
     printf("4. Preencher Poligono (Scanline) [EM BREVE]\n");
     printf("0. Sair\n");
@@ -68,5 +66,71 @@ void menu_draw_line_with_midpoint_algorithm() {
     // Vertical (Norte)
     draw_line_with_midpoint_algorithm(cx, cy, cx, cy - 250, white);
 
+    update_and_wait();
+}
+
+void menu_line_cutout_with_cohen_sutherland() {
+    clear_screen();
+
+    int rectColor = rgb_to_color(255, 255, 255);
+    int lineColorIn = rgb_to_color(0, 255, 0);
+    int lineColorOut = rgb_to_color(255, 0, 0);
+    int lineColorClip = rgb_to_color(0, 255, 255);
+
+    // Desenha a janela de recorte (XMIN, YMIN) a (XMAX, YMAX)
+    draw_line_with_midpoint_algorithm((int) XMIN, (int) YMIN, (int) XMAX, (int) YMIN, rectColor);
+    draw_line_with_midpoint_algorithm((int) XMAX, (int) YMIN, (int) XMAX, (int) YMAX, rectColor);
+    draw_line_with_midpoint_algorithm((int) XMAX, (int) YMAX, (int) XMIN, (int) YMAX, rectColor);
+    draw_line_with_midpoint_algorithm((int) XMIN, (int) YMAX, (int) XMIN, (int) YMIN, rectColor);
+
+    // 1. Totalmente dentro
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(150, 150, 300, 300, lineColorOut);
+    // Desenha a linha recortada (que é a linha inteira) em verde por cima
+    line_cutout_with_cohen_sutherland(150, 150, 300, 300, lineColorIn);
+
+    // 2. Totalmente fora - lado
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(50, 50, 80, 80, lineColorOut);
+    // Função de recorte não desenhará nada (accepted = FALSE)
+    line_cutout_with_cohen_sutherland(50, 50, 80, 80, lineColorOut);
+
+    // 3. Totalmente fora - canto
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(550, 50, 600, 100, lineColorOut);
+    // Função de recorte não desenhará nada
+    line_cutout_with_cohen_sutherland(550, 50, 600, 100, lineColorOut);
+
+    // 4. Cruzando 2 bordas
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(50, 250, 550, 250, lineColorOut);
+    // Desenha o segmento recortado em ciano por cima
+    line_cutout_with_cohen_sutherland(50, 250, 550, 250, lineColorClip);
+
+    // 5. Cruzando 2 bordas
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(250, 50, 250, 550, lineColorOut);
+    // Desenha o segmento recortado em ciano por cima
+    line_cutout_with_cohen_sutherland(250, 50, 250, 550, lineColorClip);
+
+    // 6. Cruzando 2 bordas diagonal
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(50, 50, 300, 350, lineColorOut);
+    // Desenha o segmento recortado em ciano por cima
+    line_cutout_with_cohen_sutherland(50, 50, 300, 350, lineColorClip);
+
+    // 7. Cruzando 2 bordas diagonal
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(300, 50, 550, 300, lineColorOut);
+    // Desenha o segmento recortado em ciano por cima
+    line_cutout_with_cohen_sutherland(300, 50, 550, 300, lineColorClip);
+
+    // 8. Cruzando 1 borda
+    // Desenha a linha original em vermelho
+    draw_line_with_midpoint_algorithm(150, 150, 150, 500, lineColorOut);
+    // Desenha o segmento recortado em ciano por cima
+    line_cutout_with_cohen_sutherland(150, 150, 150, 500, lineColorClip);
+
+    // Exibe o resultado
     update_and_wait();
 }

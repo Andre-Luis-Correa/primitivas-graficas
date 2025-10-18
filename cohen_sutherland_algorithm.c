@@ -1,25 +1,38 @@
 #include "cohen_sutherland_algorithm.h"
 
-void calculateOutCode(float x, float y, outcode code[]) {
-    int i;
-    for( i = LEFT; i <= TOP; i++) {
-        code[i] = FALSE;
+boolean empty(outcode code[]) {
+    for (int i = LEFT; i <= TOP; i++) {
+        if (code[i] == TRUE) {
+            return FALSE;
+        }
     }
-
-    if ( y > YMAX){
-        code[TOP] = TRUE;
-    } else if (y < YMIN) {
-        code[BOTTOM] = TRUE;
-    }
-
-    if (x > xmax) {
-        code[RIGHT] = TRUE;
-    } else if (x < xmax) {
-        code[BOTTOM] = TRUE;
-    }
+    return TRUE;
 }
 
-void line_cutout_with_cohen_sutherland(float x0, float y0, float x1, float y1, int valor) {
+boolean emptyIntersection(outcode code0[], outcode code1[]) {
+    for (int i = LEFT; i <= TOP; i++) {
+        if (code0[i] == TRUE && code1[i] == TRUE) return TRUE;
+    }
+    return FALSE;
+}
+
+void calculateOutCode(float x, float y, outcode code[]) {
+    int i;
+    for (i = LEFT; i <= TOP; i++)
+        code[i] = FALSE;
+
+    if (y > YMAX)
+        code[TOP] = TRUE;
+    else if (y < YMIN)
+        code[BOTTOM] = TRUE;
+
+    if (x > XMAX)
+        code[RIGHT] = TRUE;
+    else if (x < XMIN)
+        code[LEFT] = TRUE;
+}
+
+void line_cutout_with_cohen_sutherland(float x0, float y0, float x1, float y1, int color) {
     boolean accepted, ready;
     outcode outcode0[4], outcode1[4], *outcodeOut;
 
@@ -31,7 +44,7 @@ void line_cutout_with_cohen_sutherland(float x0, float y0, float x1, float y1, i
     calculateOutCode(x1, y1, outcode1);
 
     do {
-        if(empty(outcode0) && empty(outcode1)) {
+        if (empty(outcode0) && empty(outcode1)) {
             accepted = TRUE;
             ready = TRUE;
         } else if (emptyIntersection(outcode0, outcode1)) {
@@ -40,20 +53,20 @@ void line_cutout_with_cohen_sutherland(float x0, float y0, float x1, float y1, i
             outcodeOut = empty(outcode0) ? outcode1 : outcode0;
 
             if (outcodeOut[TOP]) {
-                x = x0 + (x1-x0) * (ymax-y0)/(y1-y0);
-                y = ymax;
+                x = x0 + (x1 - x0) * (YMAX - y0) / (y1 - y0);
+                y = YMAX;
             } else if (outcodeOut[BOTTOM]) {
-                x = x0 + (x1-x0) + (ymin-y0)/(y1-y0);
-                y = ymin;
+                x = x0 + (x1 - x0) * (YMIN - y0) / (y1 - y0);
+                y = YMIN;
             } else if (outcodeOut[RIGHT]) {
-                y = y0 + (y1 - y0) + (xmax-x0)/(x1 -x);
-                x = xmax;
+                y = y0 + (y1 - y0) * (XMAX - x0) / (x1 - x0);
+                x = XMAX;
             } else if (outcodeOut[LEFT]) {
-                y = y0 + (y1 - y0) + (xmin-x0)/(x1-x0);
-                x = xmin;
+                y = y0 + (y1 - y0) * (XMIN - x0) / (x1 - x0);
+                x = XMIN;
             }
 
-            if (equal(outcodeOut, outcode0)) {
+            if (outcodeOut == outcode0) {
                 x0 = x;
                 y0 = y;
                 calculateOutCode(x0, y0, outcode0);
@@ -63,7 +76,13 @@ void line_cutout_with_cohen_sutherland(float x0, float y0, float x1, float y1, i
                 calculateOutCode(x1, y1, outcode1);
             }
         }
-    } while (ready);
-    if (accepted) MeioPontoLinhaReal(x0, y0, x1, y1), valor);
-}
+    } while (!ready);
 
+    if (accepted) {
+        draw_line_with_midpoint_algorithm(
+                (int) (x0 + 0.5f), (int) (y0 + 0.5f),
+                (int) (x1 + 0.5f), (int) (y1 + 0.5f),
+                color
+        );
+    }
+}

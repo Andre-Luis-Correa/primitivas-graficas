@@ -3,8 +3,11 @@
 
 #include <stdio.h>
 #include "sdl_utils.h"
+#include "midpoint_line_algorithm.h"
+#include "cohen_sutherland_algorithm.h"
 
 void show_menu();
 void menu_draw_line_with_midpoint_algorithm();
+void menu_line_cutout_with_cohen_sutherland();
 
 #endif
