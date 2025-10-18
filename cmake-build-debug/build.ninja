@@ -56,8 +56,8 @@ build CMakeFiles/primitivasGraficas.dir/main.c.obj: C_COMPILER__primitivasGrafic
   OBJECT_DIR = CMakeFiles\primitivasGraficas.dir
   OBJECT_FILE_DIR = CMakeFiles\primitivasGraficas.dir
 
-build CMakeFiles/primitivasGraficas.dir/drawing_algorithms.c.obj: C_COMPILER__primitivasGraficas_unscanned_Debug C$:/Users/andre/CLionProjects/primitivasGraficas/drawing_algorithms.c || cmake_object_order_depends_target_primitivasGraficas
-  DEP_FILE = CMakeFiles\primitivasGraficas.dir\drawing_algorithms.c.obj.d
+build CMakeFiles/primitivasGraficas.dir/midpoint_line_algorithm.c.obj: C_COMPILER__primitivasGraficas_unscanned_Debug C$:/Users/andre/CLionProjects/primitivasGraficas/midpoint_line_algorithm.c || cmake_object_order_depends_target_primitivasGraficas
+  DEP_FILE = CMakeFiles\primitivasGraficas.dir\midpoint_line_algorithm.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/include
   OBJECT_DIR = CMakeFiles\primitivasGraficas.dir
@@ -92,7 +92,7 @@ build CMakeFiles/primitivasGraficas.dir/main_utils.c.obj: C_COMPILER__primitivas
 #############################################
 # Link the executable primitivasGraficas.exe
 
-build primitivasGraficas.exe: C_EXECUTABLE_LINKER__primitivasGraficas_Debug CMakeFiles/primitivasGraficas.dir/main.c.obj CMakeFiles/primitivasGraficas.dir/drawing_algorithms.c.obj CMakeFiles/primitivasGraficas.dir/drawing_utils.c.obj CMakeFiles/primitivasGraficas.dir/sdl_utils.c.obj CMakeFiles/primitivasGraficas.dir/main_utils.c.obj | C$:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2main.a C$:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2.dll.a
+build primitivasGraficas.exe: C_EXECUTABLE_LINKER__primitivasGraficas_Debug CMakeFiles/primitivasGraficas.dir/main.c.obj CMakeFiles/primitivasGraficas.dir/midpoint_line_algorithm.c.obj CMakeFiles/primitivasGraficas.dir/drawing_utils.c.obj CMakeFiles/primitivasGraficas.dir/sdl_utils.c.obj CMakeFiles/primitivasGraficas.dir/main_utils.c.obj | C$:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2main.a C$:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2.dll.a
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  C:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2main.a  C:/Users/andre/CLionProjects/primitivasGraficas/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\primitivasGraficas.dir
