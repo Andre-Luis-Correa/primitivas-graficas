@@ -1,4 +1,4 @@
-#include "drawing_algorithms.h"
+#include "midpoint_line_algorithm.h"
 
 // Octante 1: 0° <= ângulo < 45° (dx >= dy, ambos positivos)
 static void draw_line_octant_1(int x1, int y1, int x2, int y2, int color) {

@@ -9,8 +9,8 @@ include_directories("${CMAKE_SOURCE_DIR}/SDL2-2.32.10/x86_64-w64-mingw32/include
 # Adicionar executável
 add_executable(primitivasGraficas
         main.c
-        drawing_algorithms.h
-        drawing_algorithms.c
+        midpoint_line_algorithm.h
+        midpoint_line_algorithm.c
         drawing_utils.h
         drawing_utils.c
         sdl_utils.h

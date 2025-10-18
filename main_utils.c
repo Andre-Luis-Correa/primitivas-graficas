@@ -1,6 +1,6 @@
 #include "main_utils.h"
 #include "sdl_utils.h"
-#include "drawing_algorithms.h"
+#include "midpoint_line_algorithm.h"
 
 void show_menu() {
     printf("\n");
