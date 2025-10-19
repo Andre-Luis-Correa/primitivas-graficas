@@ -8,7 +8,7 @@ void show_menu() {
     printf("1. Desenhar Linha (Ponto Medio)\n");
     printf("2. Recorte de Linha (Cohen-Sutherland)\n");
     printf("3. Desenhar Poligono\n");
-    printf("4. Preencher Poligono (Scanline) [EM BREVE]\n");
+    printf("4. Preencher Poligono (Scanline)\n");
     printf("0. Sair\n");
     printf("=====================================\n");
     printf("Escolha uma opcao: ");
@@ -172,5 +172,53 @@ void menu_draw_polygon(int num_vertices) {
     }
 
     // 5. Exibir o resultado
+    update_and_wait();
+}
+
+void menu_fill_polygon_with_scanline(int num_vertices) {
+    clear_screen();
+
+    // 1. Definir Cores e Parâmetros
+    int fill_color = rgb_to_color(0, 150, 200); // Azul
+    int border_color = rgb_to_color(255, 255, 255); // Branco
+
+    int center_x = 400; // Metade da largura da tela (800)
+    int center_y = 300; // Metade da altura da tela (600)
+    int radius = 200;   // Raio do polígono
+
+    // 2. Alocar Arrays para Vértices - Alocar memória dinamicamente
+    int* vx = (int*)malloc(num_vertices * sizeof(int));
+    int* vy = (int*)malloc(num_vertices * sizeof(int));
+
+    if (vx == NULL || vy == NULL) {
+        printf("Falha ao alocar memoria para vertices!\n");
+        return;
+    }
+
+    // 3. Calcular Vértices (lógica do menu_draw_polygon)
+    double angle_step = 2.0 * M_PI / num_vertices;
+    for (int i = 0; i < num_vertices; i++) {
+        double current_angle = i * angle_step;
+        vx[i] = (int)(center_x + radius * cos(current_angle));
+        vy[i] = (int)(center_y + radius * sin(current_angle));
+    }
+
+    // 4. Chamar a Função de Preenchimento
+    fill_polygon_with_scanline(vx, vy, num_vertices, fill_color);
+
+    // 5. Redesenhar o Contorno por Cima
+    for (int i = 0; i < num_vertices; i++) {
+        int next_i = (i + 1) % num_vertices;
+        draw_line_with_midpoint_algorithm(
+                vx[i], vy[i],
+                vx[next_i], vy[next_i],
+                border_color
+        );
+    }
+
+    // 6. Limpar Memória e Exibir
+    free(vx);
+    free(vy);
+
     update_and_wait();
 }

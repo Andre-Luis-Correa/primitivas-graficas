@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+
 extern SDL_Renderer* renderer;
 extern SDL_Window* window;
 

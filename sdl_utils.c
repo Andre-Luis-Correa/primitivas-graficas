@@ -2,8 +2,6 @@
 
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
 
 int init_sdl() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
