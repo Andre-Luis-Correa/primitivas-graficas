@@ -13,6 +13,13 @@ typedef struct EdgeNode {
     struct EdgeNode* next; // Próximo nó na lista ligada
 } EdgeNode;
 
+void insert_edge(EdgeNode** list_head, EdgeNode* edge);
+void build_ET(int* vx, int* vy, int n, EdgeNode* ET[]);
+void draw_scanline_spans(EdgeNode* AET, int y, int color);
+void remove_edges_at_y(EdgeNode** AET, int y);
+void update_aet(EdgeNode* AET);
+void resort_aet(EdgeNode** AET);
+void move_edges_from_et_to_aet(EdgeNode* ET[], EdgeNode** AET, int y);
 void fill_polygon_with_scanline(int* vx, int* vy, int num_vertices, int color);
 
 #endif

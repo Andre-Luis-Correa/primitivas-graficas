@@ -22,3 +22,7 @@
 3	691	7825963241878431	CMakeFiles/primitivasGraficas.dir/main.c.obj	2b849e03522a51b0
 11	706	7825963242034477	CMakeFiles/primitivasGraficas.dir/main_utils.c.obj	6b32fcdfa1e7dddc
 707	980	7825963244003986	primitivasGraficas.exe	1978d8563a985ca0
+4	762	7825970678935920	CMakeFiles/primitivasGraficas.dir/main.c.obj	2b849e03522a51b0
+12	776	7825970679047351	CMakeFiles/primitivasGraficas.dir/main_utils.c.obj	6b32fcdfa1e7dddc
+20	781	7825970679112154	CMakeFiles/primitivasGraficas.dir/scanline_fill_algorithm.c.obj	86889e146cc1abf
+781	1262	7825970683075391	primitivasGraficas.exe	1978d8563a985ca0

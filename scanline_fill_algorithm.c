@@ -2,7 +2,7 @@
 
 
 // Insere uma aresta em uma lista (ET ou AET), mantendo-a ordenada pela coordenada x_atual
-static void insert_edge(EdgeNode** list_head, EdgeNode* edge) {
+void insert_edge(EdgeNode** list_head, EdgeNode* edge) {
     if (*list_head == NULL) {
         *list_head = edge;
     } else {
@@ -25,7 +25,7 @@ static void insert_edge(EdgeNode** list_head, EdgeNode* edge) {
 }
 
 // Constrói a Tabela de Arestas Globais (ET) a partir dos vértices do polígono
-static void build_ET(int* vx, int* vy, int n, EdgeNode* ET[]) {
+void build_ET(int* vx, int* vy, int n, EdgeNode* ET[]) {
     for (int i = 0; i < n; i++) {
         int i_next = (i + 1) % n;
 
@@ -60,7 +60,7 @@ static void build_ET(int* vx, int* vy, int n, EdgeNode* ET[]) {
 }
 
 // Desenha os spans (segmentos horizontais) entre pares de 'x' na AET
-static void draw_scanline_spans(EdgeNode* AET, int y, int color) {
+void draw_scanline_spans(EdgeNode* AET, int y, int color) {
     EdgeNode* p = AET;
     while (p != NULL && p->next != NULL) {
         // Pega o par de coordenadas x
@@ -78,7 +78,7 @@ static void draw_scanline_spans(EdgeNode* AET, int y, int color) {
 }
 
 // Remove da AET as arestas que terminam na scanline atual (y == ymax)
-static void remove_edges_at_y(EdgeNode** AET, int y) {
+void remove_edges_at_y(EdgeNode** AET, int y) {
     EdgeNode* p = *AET;
     EdgeNode* prev = NULL;
     while (p != NULL) {
@@ -105,14 +105,14 @@ static void remove_edges_at_y(EdgeNode** AET, int y) {
 Atualiza a coordenada 'x' de cada aresta na AET.
 x = x + 1/m
 */
-static void update_aet(EdgeNode* AET) {
+void update_aet(EdgeNode* AET) {
     for (EdgeNode* p = AET; p != NULL; p = p->next) {
         p->x_atual += p->inv_m;
     }
 }
 
 // Reordena a AET com base nos novos valores de 'x'
-static void resort_aet(EdgeNode** AET) {
+void resort_aet(EdgeNode** AET) {
     if (*AET == NULL || (*AET)->next == NULL) return;
 
     EdgeNode* sorted_list = NULL;
@@ -131,7 +131,7 @@ static void resort_aet(EdgeNode** AET) {
 }
 
 // Move as arestas da ET[y] para a AET, mantendo a AET ordenada
-static void move_edges_from_et_to_aet(EdgeNode* ET[], EdgeNode** AET, int y) {
+void move_edges_from_et_to_aet(EdgeNode* ET[], EdgeNode** AET, int y) {
     EdgeNode* et_bucket = ET[y];
     EdgeNode* p_aet = *AET;
     EdgeNode* p_et = et_bucket;
